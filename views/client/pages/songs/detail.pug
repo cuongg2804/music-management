@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+  .singer-detail
+    .container.my-3
+      .row
+        .col-12
+          .inner-title Cắt đôi nỗi sầu
+
+          .inner-actions
+            div(class="inner-action inner-time")
+              <i class="fa-regular fa-clock"></i> 20/10/2023
+            div(class="inner-action inner-singer" )
+              <i class="fa-solid fa-microphone-lines"  ></i> #{detailSong.singer.singer}
+            div(class="inner-action inner-topic")
+              <i class="fa-solid fa-music"></i> #{detailSong.topic.topic}
+            div(class="inner-action inner-like like" button-like = detailSong.id )
+              <i class="fa-regular fa-thumbs-up"></i>
+                span(class="inner-number mr-1") #{detailSong.like}
+                | thích
+            div(class="inner-action inner-heart")
+              <i class="fa-regular fa-heart"></i> Bài hát yêu thích
+
+          
+          .inner-play
+            .inner-avatar
+              img(src=detailSong.avatar)
+            .inner-audio
+                div(id="aplayer" data-song=detailSong data-singer= detailSong.singer )
+                //- audio(controls)
+                //-   source(src=detailSong.audio)
+
+          .inner-desc
+            .inner-label Mô tả
+            .inner-text
+              | #{detailSong.description}
+
+          .inner-desc
+            .inner-label Lời bài hát
+            .inner-text
+              | !{detailSong.lyrics}

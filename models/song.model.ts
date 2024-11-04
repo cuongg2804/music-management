@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { topic } from "../controller/client/topic.controller";
 
 const songSchema = new mongoose.Schema(
     {
@@ -11,6 +10,18 @@ const songSchema = new mongoose.Schema(
       like : Number,
       lyrics :  String,
       audio : String,
-      slug : String
+      slug : String,
+      deleted: {
+        type: Boolean,
+        default: false,
+      },
+      deletedAt: Date,
+    },
+    {
+      timestamps: true,
     }
 )
+
+const Song =  mongoose.model("Song", songSchema ,"songs" );
+
+export default Song ;
