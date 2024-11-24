@@ -15,10 +15,10 @@ var path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 (0, database_1.connect)();
 var app = (0, express_1.default)();
-app.use(express_1.default.static("public"));
+app.set('views', "".concat(__dirname, "/views"));
 app.use((0, method_override_1.default)('_method'));
 //#region pug
-app.set("views", "./views");
+app.set('views', "".concat(__dirname, "/views"));
 app.set("view engine", "pug");
 //#endregion
 app.locals.prefixAdmin = system_1.systemConfig.PREFIX_ADMIN;
