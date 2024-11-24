@@ -2,6 +2,7 @@ import express, {Request, Response} from "express";
 import Topic from "../../models/topic.model";
 import Song from "../../models/song.model";
 import Singer from "../../models/singer.model";
+import { strict } from "assert";
 
 export const index = async (req : Request , res :Response) =>  {
     const slugTopic = req.params.slugTopic;
@@ -57,7 +58,7 @@ export const detail = async (req : Request , res :Response) =>  {
         status:"active"
     }).select("fullName");
     detailSong["singer"] = singer;
-
+    
     res.render("client/pages/songs/detail.pug",{
         pageTitle : detailSong.title,
         detailSong : detailSong
@@ -88,5 +89,32 @@ export const like = async (req : Request , res :Response) =>  {
         code : 200,
         message :"Đã thích",
         like : updateLike
+    })
+}
+
+
+// PATCH /songs/listen/${idSong}
+export const listenPatch = async (req : Request , res :Response) => {
+    const id : String = req.params.id;
+    const song = await Song.findOne({
+        _id : id,
+        deleted : false,
+        status : "active"
+    });
+
+
+    const Newlisten: number = song.listen + 1;
+
+    await Song.updateOne({
+        _id : id,
+        deleted : false,
+        status : "active"
+    },{
+        listen : Newlisten
+    });
+    res.json({
+        code : 200,
+        message : "Thành công",
+        listen : Newlisten
     })
 }

@@ -13,5 +13,10 @@ router.get("/detail/:slugSong",controller.detail);
 // PATCH /songs/:idSong/:status
 router.patch("/:idSong/:status",controller.like);
 
+// PATCH /songs/listen/${idSong}
+
+router.get("/listen/:id",controller.listenPatch);
+
+
 
 export const songRouter :Router = router ;
