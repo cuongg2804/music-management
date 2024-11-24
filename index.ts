@@ -11,7 +11,7 @@ import path from "path";
 env.config();
 connect();
 const app : Express = express();
-app.set('views', `${__dirname}/views`);
+app.use(express.static(`${__dirname}/public`));
 
 app.use(methodOverride('_method'));
 //#region pug

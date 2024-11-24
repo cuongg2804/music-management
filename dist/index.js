@@ -15,7 +15,7 @@ var path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 (0, database_1.connect)();
 var app = (0, express_1.default)();
-app.set('views', "".concat(__dirname, "/views"));
+app.use(express_1.default.static("".concat(__dirname, "/public")));
 app.use((0, method_override_1.default)('_method'));
 //#region pug
 app.set('views', "".concat(__dirname, "/views"));
